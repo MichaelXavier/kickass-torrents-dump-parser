@@ -1,5 +1,5 @@
 name:                kickass-torrents-dump-parser
-version:             0.0.0
+version:             0.0.1
 synopsis:            Parses kat.ph torrent dumps
 description:         Parses kat.ph torrent dumps, see http://kat.ph/api/
 license:             MIT
@@ -24,7 +24,7 @@ library
                    cassava == 0.2.*,
                    text == 0.11.*,
                    vector
-  ghc-options: -threaded -Wall
+  ghc-options: -Wall
 
 test-suite spec
   type:           exitcode-stdio-1.0
