@@ -15,7 +15,6 @@ import Data.Text.Encoding (decodeUtf8)
 import qualified Data.Vector as V
 
 newtype InfoHash        = InfoHash { unInfoHash :: Text } deriving (Show, Eq)
--- TODO: use most useful URL type instead of rolling your own
 newtype URL             = URL { unUrl :: Text } deriving (Show, Eq)
 newtype ReleaseCategory = ReleaseCategory { unReleaseCategory :: Text } deriving (Show, Eq)
 newtype ReleaseTitle    = ReleaseTitle { unReleaseTitle :: Text } deriving (Show, Eq)
@@ -49,7 +48,8 @@ instance FromField ReleaseCategory where
 instance FromField ReleaseTitle where
   parseField s = ReleaseTitle <$> pure (decodeUtf8 s)
 
+-- | Parses a release from a Lazy ByteString
 parseDump :: LBS.ByteString -> Either String (V.Vector Release)
 parseDump = decodeWith options False
   where options = DecodeOptions $ c2w8 '|'
-        c2w8 = fromIntegral . ord
+        c2w8    = fromIntegral . ord
